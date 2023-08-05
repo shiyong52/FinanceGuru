@@ -3,3 +3,8 @@ Flask
 Jinja2
 gunicorn
 flask_session
+flask
+calender
+tempfile
+werkzeug.security
+helpers

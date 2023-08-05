@@ -1,4 +1,3 @@
-import os
 from datetime import date
 import calendar
 from cs50 import SQL
