@@ -5,3 +5,4 @@ gunicorn
 flask_session
 flask
 pytz
+requests
