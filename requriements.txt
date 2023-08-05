@@ -7,3 +7,6 @@ flask_session
 tempfile
 werkzeug.security
 helpers
+Flask
+Jinja2
+gunicorn
