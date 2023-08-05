@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<form action="/" method="post">
+<h1><input type="submit" name="Previous" value="<">
+    {{Month_full_name}}
+    <input type="submit" name="Next" value=">"></h1>
+</form>
+
+<form action="/" method="post">
+  <label for="month">Date (month and year):</label>
+  <input type="month" id="month" name="month" required>
+  <input type="submit" value="search">
+</form>
+
+    <table class="table" style="margin-left:auto;margin-right:auto;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Meta Category</th>
+                <th scope="col">Sum of amount</th>
+                <th scope="col">Percentage</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in LIST %}
+                <tr>
+                    <td>{{row['Meta Category']}}</td>
+                    <td>${{row['Sum']}}</td>
+                    <td>{{row['Percentage']}}%</td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+                <tr>
+                    <td>Grand Total</td>
+                    <td >{{ total }}</td>
+                    <td> 100.00%</td>
+                </tr>
+                
+                
+
+                
+        </tfoot>
+
+    </table>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Expenses
+{% endblock %}
+
+{% block main %}
+<style>
+body 
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  background-color: black;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 420px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+</style>
+
+
+
+    <!-- A button to open the popup form -->
+<button class="open-button" onclick="openForm()">+</button>
+
+<!-- The form -->
+<div class="form-popup" id="myForm">
+  <form method="post"  action="/expenses" class="form-container">
+    <h1>Record</h1>
+    <label for="Date"><b>Date</b></label>
+    <br>
+    <input type="date" name="Date" required>
+    <br>
+    <br>
+    <label for="Description"><b>Description</b></label>
+    <input type="text" placeholder="Enter description here" name="Description" required>
+    <br>
+    <label for="expenses"><b>Expenses</b></label>
+    <br>
+    $<input type="number" min="0" placeholder="0" name="expenses" required>
+    <br>
+    <br>
+    <label for="Category"><b>Category</b></label>
+    <input type="text" placeholder="Enter category here" name="Category" required>
+    <br>
+    <label for="MetaC">Meta Category</label>
+    <br>
+    <select name="MetaC" id="MetaC">
+        <option value="none" selected disabled hidden>Select an Option</option>
+        {% for row in Cat %}
+        <option value="{{row}}">{{row}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-primary" onclick="closeForm()">Close</button>
+  </form>
+</div>
+
+
+<form action="/expenses" method="post">
+<h1><input type="submit" name="Previous" value="<">
+    {{Month_full_name}}
+    <input type="submit" name="Next" value=">"></h1>
+</form>
+
+<form action="/expenses" method="post">
+  <label for="month">Date (month and year):</label>
+  <input type="month" id="month" name="month" required>
+  <input type="submit" value="search">
+</form>
+  <table class="table" style="margin-left:auto;margin-right:auto;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount Transaction</th>
+                <th scope="col">Category</th>
+                <th scope="col">Meta Category</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in LIST %}
+                <tr>
+                    <td>{{row['Date']}}</td>
+                    <td>{{row['Description']}}</td>
+                    <td>${{row['expenses']}}</td>
+                    <td>{{row['Category']}}</td>
+                    <td>{{row['MetaC']}}</td>
+                    <td>
+                    <form action="/expenses" method="post">
+                        <input type="hidden" name="Delete" value="{{row['E_id']}}">
+                       <input type="submit" value="Delete" >
+                   </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        
+        </tbody>
+        <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Grand Total</td>
+                    <td >${{ total }}</td>
+                </tr>
+        </tfoot>
+
+    </table>
+    <script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+</script>
+
+{% endblock %}

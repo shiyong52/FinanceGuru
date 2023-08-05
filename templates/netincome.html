@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Net Income
+{% endblock %}
+
+{% block main %}
+
+<form action="/netincome" method="post">
+<h1><input type="submit" name="Previous" value="<">
+    {{Month_full_name}}
+    <input type="submit" name="Next" value=">"></h1>
+</form>
+
+<form action="/netincome" method="post">
+  <label for="month">Date (month and year):</label>
+  <input type="month" id="month" name="month" required>
+  <input type="submit" value="search">
+</form>
+
+  <table class="table" style="margin-left:auto;margin-right:auto;">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Income</th>
+                <th scope="col">Expenses</th>
+                      
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>${{Income}}</td>
+                    <td>${{Expenses}}</td>
+                    
+                </tr>
+        </tbody>
+        <tfoot>
+                <tr>
+                    <td>Total Value</td>
+                    <td >${{ total }}</td>
+                </tr>
+        </tfoot>
+
+    </table>
+    
+{% endblock %}
