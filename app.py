@@ -514,8 +514,9 @@ def save():
     if request.method == "POST":
         Target = request.form.get('Target')
         rows = db.execute("SELECT * FROM Target WHERE Month = ?",month4)
+        print(len(rows))
         if Target:
-            if len(rows) == 1 or len(rows) == 0:
+            if len(rows) == 0:
                 db.execute("INSERT INTO Target (id, Month, Target) VALUES(?, ?, ?)", session["user_id"], month4, Target)
         Delete = request.form.get('Delete')
         if Delete != None:
@@ -600,16 +601,38 @@ def save():
 
 
 
-
-
-
-
-##@app.route('/success', methods = ['POST'])  
-##def success():  
-##    if request.method == 'POST':  
-##        f = request.files['file']
-##        f.save(f.filename)  
-##        return render_template("acknowledgement.html", name = f.filename)  
+@app.route('/graph', methods=["GET", "POST"])  
+def graph():  
+    # Define Plot Data
+    labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'October',
+        'November',
+        'December'
+    ]
+    data = []
+    date = ['01','02','03','04','05','06','07','08','09','10','11','12']
+    for i in date:
+        search = '2023-' + i + '%'
+        Expenses = db.execute("SELECT SUM(expenses) FROM Expenses WHERE id = ? AND Date LIKE ?", session["user_id"],search)
+        Expenses = Expenses[0]['SUM(expenses)']
+        if Expenses == None:
+            Expenses = 0
+        data.append(Expenses)
+ 
+    # Return the components to the HTML template
+    return render_template(
+        template_name_or_list='graph.html',
+        data=data,
+        labels=labels,
+    )
   
 
 
