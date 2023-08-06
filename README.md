@@ -2,7 +2,7 @@
 # CS50 Final Project
 
 #### Video Demo:  https://youtu.be/WjFruqJbJiY
-![Finance Guru](https://ibb.co/168PPZp)
+![Finance Guru](https://www.google.com/url?sa=i&url=https%3A%2F%2Fjavascript.plainenglish.io%2Fharvard-cs50-review-bec3af5eb62d&psig=AOvVaw2xvpm0SBoLc7Zy07XFlYVP&ust=1691377888811000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIjWjuWHx4ADFQAAAAAdAAAAABAD)
 
 #### Description: My final projects allows you to keep track of your expenses, income, asset, and liabilities. At the same time, you can also set your target to save for each month and see whether you met your target.
 This web app gives an overview of your spending and makes you more aware of it in a month/week by manually typing it and understanding where your money is spent.
