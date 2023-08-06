@@ -22,6 +22,16 @@ Finance Guru is a web application that revolutionizes financial management, allo
 
 - **Monthly Expenses Graph**: Visualize spending patterns over time for data-driven financial decisions.
 
-## How to Use
+## Design Choices
+
+In designing Finance Guru, I aimed for a user-friendly and accessible platform. The choice of React for the front-end allows for seamless component-based development and smooth user interactions. On the back-end, I opted for Express as it offers an efficient framework for handling server-side logic and API integrations.
+
+To ensure scalability and real-time data updates, I decided to use MongoDB as the database. Its flexibility and NoSQL nature fit well with the dynamic requirements of financial data.
+
+For the graph visualization, I selected Chart.js for its simplicity and adaptability. This library allows users to grasp complex spending patterns effortlessly.
+
+## Installation and Setup
+
+To run Finance Guru locally, follow these steps:
 
 1. Clone this repository to your local machine.
