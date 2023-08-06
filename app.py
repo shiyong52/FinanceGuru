@@ -513,7 +513,7 @@ def save():
     global month4
     if request.method == "POST":
         Target = request.form.get('Target')
-        rows = db.execute("SELECT * FROM Target WHERE Month = ?",month4)
+        rows = db.execute("SELECT * FROM Target WHERE Month = ? AND id = ?",month4,session["user_id"])
         print(len(rows))
         if Target:
             if len(rows) == 0:
